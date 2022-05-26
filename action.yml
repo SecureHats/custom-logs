@@ -23,5 +23,4 @@ runs:
   using: "composite"
   steps:
       shell: pwsh
-      run: |
-        ${{ github.action_path }}/action.ps1 -workspaceId ${{ inputs.workspaceId }} -workspaceKey {{ inputs.workspaceKey }} -FilesPath ${{ inputs.filesPath }}
+      run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ inputs.workspaceId }} -workspaceKey {{ inputs.workspaceKey }} -FilesPath ${{ inputs.filesPath }}
