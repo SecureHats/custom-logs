@@ -30,10 +30,10 @@ param (
 
 # Import custom modules
 Get-ChildItem $($PSScriptRoot)
-Import-Module "$($PSScriptRoot)/Modules/HelperFunctions.psm1"
+Import-Module "$($PSScriptRoot)/modules/HelperFunctions.psm1"
 
 Write-Output "Also dot source"
-. "$($PSScriptRoot)/Modules/HelperFunctions.psm1"
+. "$($PSScriptRoot)/modules/HelperFunctions.psm1"
 
 $parameters = @{
     workspaceId   = $workspaceId
