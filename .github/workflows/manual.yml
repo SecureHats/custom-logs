@@ -8,7 +8,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+        
       - name: Upload custom data
         uses: SecureHats/custom-logs@v0.0.4-alpha
         with:
-          filesPath: "samples/okta"
+          filesPath: samples/okta
