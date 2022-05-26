@@ -46,11 +46,6 @@ if ($FilesPath -ne '.') {
     Write-Output  "Files path is [$FilesPath]"
 }
 
-if ([string]::IsNullOrEmpty($tableName)) {
-    Write-Host 'No table name has been specified, exit function'
-    break
-}
-
 $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
     Write-Host "Processing File input [$_]"
     if ($_.FullName -like "*.csv") {
