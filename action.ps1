@@ -25,7 +25,7 @@ param (
     [string]$workspaceKey,
 
     [parameter(Mandatory = $false)]
-    [string]$TableName
+    [string]$tableName
 )
 
 # Import custom modules
@@ -47,38 +47,24 @@ if ($FilesPath -ne '.') {
 }
 
 $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
-    Write-Host "Processing File input [$_]"
     if ($_.FullName -like "*.csv") {
         try {
             $parameters.dataInput = (Get-Content $_.FullName | ConvertFrom-CSV)
             if ($_.BaseName -like "*_CL") {
-                Write-Host "Converted file from CSV"
                 $parameters.tableName = ($_.BaseName).Replace('_CL', '')
             }
-            Write-Host "Sending JSON to workspace"
             $response = Send-CustomLogs @parameters
         }
-        catch {
-            Write-Host "Unable to process CSV file [$_]"
-        }
+        catch { Write-Host "Unable to process CSV file [$_]" }
     } elseif ($_.FullName -like "*.json") {
         try {
-            Write-Host "ConvertFile from JSON"
             $parameters.dataInput = (Get-Content $_.FullName | ConvertFrom-JSON)
             if ($_.BaseName -like "*_CL") {
-            Write-Host "Converted file from JSON"
                 $parameters.tableName = ($_.BaseName).Replace('_CL', '')
             }
-            Write-Host "Sending JSON to workspace"
             $response = Send-CustomLogs @parameters
         }
-        catch {
-            write-host "workspaceId: $($parameters.workspaceId)"
-            write-host "workspaceKey: $($parameters.workspaceKey)"
-            write-host "workspaceId: $($parameters.tableName)"
-            Write-Host "Unable to process JSON file [$_]"
-        }
-
+        catch { Write-Host "Unable to process JSON file [$_]" }
     } else {
         Write-Host "Nothing to progress"
     }
