@@ -67,6 +67,9 @@ $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
             if ($_.BaseName -like "_CL") {
             Write-Host "Converted file from JSON"
                 $parameters.tableName = ($_.BaseName).Replace('_CL', '')
+                write-host "workspaceId: $parameters.workspaceId"
+                write-host "workspaceKey: $parameters.workspaceKey"
+                write-host "workspaceId: $parameters.tableName"
             }
             Write-Host "Sending JSON to workspace"
             $response = Send-CustomLogs @parameters
