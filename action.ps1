@@ -37,7 +37,7 @@ Write-Output "Also dot source"
 
 $parameters = @{
     workspaceId   = $workspaceId
-    workspaceKey  = $workspaceKey
+    workspaceKey  = $workspaceKey | ConvertTo-SecureString -AsPlainText -Force
     tableName     = $TableName
     dataInput     = ''
 }
