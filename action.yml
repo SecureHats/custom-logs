@@ -9,13 +9,19 @@ inputs:
     description:  'Name of the custom table to send the data.'
     required: false
     default: '.'
+  workspaceId:
+    description:  'id of the Azure Monitor workspace.'
+    required: true
+    default: '.'
+  workspaceKey:
+    description:  'Key of the Azure Monitor workspace.'
+    required: true
+    default: '.'
+
 
 runs:
   using: "composite"
   steps:
       shell: pwsh
-      env:
-        workspaceId: ${{ secrets.workspaceId }}
-        workspaceKey: ${{ secrets.workspaceKey }}
       run: |
-        ${{ github.action_path }}/action.ps1 -workspaceId $env:workspaceId -workspaceKey $env:workspaceKey -FilesPath ${{ inputs.filesPath }}
+        ${{ github.action_path }}/action.ps1 -workspaceId ${{ inputs.workspaceId }} -workspaceKey {{ inputs.workspaceKey }} -FilesPath ${{ inputs.filesPath }}
