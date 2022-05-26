@@ -53,7 +53,7 @@ $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
             $parameters.dataInput = (Get-Content $_.FullName | ConvertFrom-CSV)
             if ($_.BaseName -like "_CL") {
                 Write-Host "Converted file from CSV"
-                $parameters.tableName = ($_.BaseName).Replace('_CL', '')
+                $parameters.tableName = $_.BaseName #).Replace('_CL', '')
             }
             Write-Host "Sending JSON to workspace"
             $response = Send-CustomLogs @parameters
@@ -66,7 +66,7 @@ $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
             $parameters.dataInput = (Get-Content $_.FullName | ConvertFrom-JSON)
             if ($_.BaseName -like "_CL") {
             Write-Host "Converted file from JSON"
-                $parameters.tableName = ($_.BaseName).Replace('_CL', '')
+                $parameters.tableName = $_.BaseName #.Replace('_CL', '')
             }
             Write-Host "Sending JSON to workspace"
             $response = Send-CustomLogs @parameters
