@@ -29,7 +29,7 @@ param (
 )
 
 # Import custom modules
-Import-Module $($PSScriptRoot)\Modules\HelperFunctions.psm1
+Import-Module $($PSScriptRoot)/Modules/HelperFunctions.psm1
 
 $parameters = @{
     workspaceId   = $workspaceId
