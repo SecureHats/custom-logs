@@ -52,9 +52,11 @@ $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
         try {
             $parameters.dataInput = (Get-Content $_.FullName | ConvertFrom-CSV)
             if ($_.BaseName -like "_CL") {
+                Write-Output "Converted file from CSV"
                 $parameters.tableName = ($_.BaseName).Replace('_CL', '')
             }
-            Send-CustomLogs @parameters
+            Write-Output "Sending JSON to workspace"
+            $response = Send-CustomLogs @parameters
         }
         catch {
             Write-Output "Unable to process CSV file [$_]"
@@ -63,9 +65,11 @@ $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
         try {
             $parameters.dataInput = (Get-Content $_.FullName | ConvertFrom-JSON)
             if ($_.BaseName -like "_CL") {
+            Write-Output "Converted file from JSON"
                 $parameters.tableName = ($_.BaseName).Replace('_CL', '')
             }
-            Send-CustomLogs @parameters
+            Write-Output "Sending JSON to workspace"
+            $response = Send-CustomLogs @parameters
         }
         catch {
             Write-Output "Unable to process JSON file [$_]"
@@ -75,3 +79,5 @@ $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
         Write-Output "Nothing to progress"
     }
 }
+
+write-output $response
