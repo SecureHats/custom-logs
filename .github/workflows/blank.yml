@@ -1,14 +1,14 @@
 name: Test PowerShell on Ubuntu
-on: push
+on: workflow_dispatch
 
 jobs:
-  pester-test:
+  custom-log:
     name: Pester test
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Perform a Pester test from the Tests.ps1 file
+      - name: Upload custom data
         shell: pwsh
         run: |
           ./action.ps1 -filesPath "samples" -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }}
