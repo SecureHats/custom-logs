@@ -1,5 +1,5 @@
-name: 'validate-detections'
-description: 'Validate Microsoft Sentinel Analytics Rules. Supported file types for detection rules are ARM templates (json) and yml files'
+name: 'custom-logs'
+description: 'Import- custom logs into Microsoft Sentinel custom tables. Supported file types for sample data are json csv'
 inputs:
   filesPath:
     description:  'FileType to import into the workspace.'
