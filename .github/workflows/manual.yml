@@ -9,6 +9,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Upload custom data
-        shell: pwsh
-        run: |
-          ./action.ps1 -filesPath "samples/okta" -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }}
+        uses: SecureHats/custom-logs@v0.0.4-alpha
+        with:
+          filesPath: "samples/okta"
