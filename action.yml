@@ -5,22 +5,9 @@ inputs:
     description:  'FileType to import into the workspace.'
     required: false
     default: '.'
-  tableName:
-    description:  'Name of the custom table to send the data.'
-    required: false
-    default: '.'
-  workspaceId:
-    description:  'id of the Azure Monitor workspace.'
-    required: true
-    default: '.'
-  workspaceKey:
-    description:  'Key of the Azure Monitor workspace.'
-    required: true
-    default: '.'
-
 
 runs:
   using: "composite"
   steps:
       shell: pwsh
-      run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ inputs.workspaceId }} -workspaceKey {{ inputs.workspaceKey }} -FilesPath ${{ inputs.filesPath }}
+      run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath ${{ inputs.filesPath }}
