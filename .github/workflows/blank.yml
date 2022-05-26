@@ -11,4 +11,4 @@ jobs:
       - name: Upload custom data
         shell: pwsh
         run: |
-          ./action.ps1 -filesPath "samples" -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }}
+          ./action.ps1 -filesPath "samples/okta" -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }}
