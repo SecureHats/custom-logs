@@ -52,32 +52,32 @@ $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
         try {
             $parameters.dataInput = (Get-Content $_.FullName | ConvertFrom-CSV)
             if ($_.BaseName -like "_CL") {
-                Write-Output "Converted file from CSV"
+                Write-Host "Converted file from CSV"
                 $parameters.tableName = ($_.BaseName).Replace('_CL', '')
             }
-            Write-Output "Sending JSON to workspace"
+            Write-Host "Sending JSON to workspace"
             $response = Send-CustomLogs @parameters
         }
         catch {
-            Write-Output "Unable to process CSV file [$_]"
+            Write-Host "Unable to process CSV file [$_]"
         }
     } elseif ($_.FullName -like "*.json") {
         try {
             $parameters.dataInput = (Get-Content $_.FullName | ConvertFrom-JSON)
             if ($_.BaseName -like "_CL") {
-            Write-Output "Converted file from JSON"
+            Write-Host "Converted file from JSON"
                 $parameters.tableName = ($_.BaseName).Replace('_CL', '')
             }
-            Write-Output "Sending JSON to workspace"
+            Write-Host "Sending JSON to workspace"
             $response = Send-CustomLogs @parameters
         }
         catch {
-            Write-Output "Unable to process JSON file [$_]"
+            Write-Host "Unable to process JSON file [$_]"
         }
 
     } else {
-        Write-Output "Nothing to progress"
+        Write-Host "Nothing to progress"
     }
 }
 
-write-output $response
+write-Host $response
