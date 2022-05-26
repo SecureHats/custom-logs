@@ -1,0 +1,21 @@
+name: 'validate-detections'
+description: 'Validate Microsoft Sentinel Analytics Rules. Supported file types for detection rules are ARM templates (json) and yml files'
+inputs:
+  filesPath:
+    description:  'FileType to import into the workspace.'
+    required: false
+    default: '.'
+  tableName:
+    description:  'Name of the custom table to send the data.'
+    required: false
+    default: '.'
+
+runs:
+  using: "composite"
+  steps:
+      shell: pwsh
+      env:
+        workspaceId: ${{ secrets.workspaceId }}
+        workspaceKey: ${{ secrets.workspaceKey }}
+      run: |
+        ${{ github.action_path }}/action.ps1 -workspaceId $env:workspaceId -workspaceKey $env:workspaceKey -FilesPath ${{ inputs.filesPath }}
