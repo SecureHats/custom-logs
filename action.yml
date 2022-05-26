@@ -9,5 +9,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-      shell: pwsh
-      run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath ${{ inputs.filesPath }}
+    shell: pwsh
+    run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath ${{ inputs.filesPath }}
