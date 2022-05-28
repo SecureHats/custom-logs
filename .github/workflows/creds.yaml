@@ -16,13 +16,13 @@ jobs:
           #$secret1 = ${{ secrets.LONGSECRET }}
           
           Write-Host 'Set Encoded Bytes'
-          $encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }}))
+          $encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
           Write-Host 'Set Base64'
-          $encodedText = [System.Convert]::ToBase64String($encodedBytes)
+          $encodedText = [System.Convert]::ToBase64String($encodedBytes))
           $encodedText
           write-host $encodedText
                   
-          Write-Host "tenantId: $([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($env:LONGSECRET))))"
+          #Write-Host "tenantId: $([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($env:LONGSECRET))))"
   
           
           #Write-Host "ConvertTo Base64 FOR SECRET 1"
