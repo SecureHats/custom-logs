@@ -11,12 +11,10 @@ jobs:
       - name: Perform a test
         shell: pwsh
         run: |
-          continue-on-error: true
-          $ErrorActionPreference = 'Continue'
           Write-Host "Read Secret from variables"
-          #$secret1 = ${{ secrets.LONGSECRET }}
+          $secret1 = ${{ secrets.LONGSECRET }}
           
-          Write-Host 'Set Encoded Bytes'
-          $encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
+        ##  Write-Host 'Set Encoded Bytes'
+        ##  $encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
 #          Write-Host 'Set Base64'
 #          $encodedText = [System.Convert]::ToBase64String($encodedBytes))
