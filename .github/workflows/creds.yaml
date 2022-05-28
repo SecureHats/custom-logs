@@ -16,7 +16,7 @@ jobs:
           $secrets = "${{ secrets }}"
           
           write-output $secrets
-          write-output $secrets | ConvertFrom-JSON
+          write-output $secrets | ConvertTo-JSON
           $secrets | foreach {
             Write-output $_
           }
