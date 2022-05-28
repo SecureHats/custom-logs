@@ -12,12 +12,20 @@ jobs:
         shell: pwsh
         run: |
          Write-Host "Read Secret from variables"
-         $secret1 = "${{ secrets.WORKSPACEKEY }}"
-         Write-Host "Secret1 from mem = $($secret1)"
+         $secret1 = "${{ secrets.MYSECRET }}"
+         $secret2 = "$env:MYSECRET"
+         
+         Write-host "Secret 1 = $secret1"
+         Write-host "Secret 2 = $secret2"
+         
+         Write-Host "Create an error"
+         $secret3  = ${{ secrets.MYSECRET}}
+         
+         #Write-Host "Secret1 from mem = $($secret1)"
           #Write-Host "ConvertTo Base64 FOR SECRET 1"
           #$workspaceKey1   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable("WORKSPACEKEY"))))'"))
-          Write-Host "ConvertTo Base64 FROM ENV VARIABLE"
-          $workspaceKey2   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes("$secret1")))'"))
+          #Write-Host "ConvertTo Base64 FROM ENV VARIABLE"
+          #$workspaceKey2   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes("$secret1")))'"))
           #Write-Host "workspaceKey1 = $($workspaceKey1)"
-          Write-Host "workspaceKey2 = $($workspaceKey2)"
+          #Write-Host "workspaceKey2 = $($workspaceKey2)"
            
