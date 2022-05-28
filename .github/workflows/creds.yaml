@@ -19,9 +19,9 @@ jobs:
          Write-host "Secret 2 = $secret2"
          
          Write-Host "Create an error"
-         $secret3  = ${{ secrets.MYSECRET}}
+         $secret3  = ${{ secrets.MYSECRET }}
          
-         #Write-Host "Secret1 from mem = $($secret1)"
+         Write-Host "Secret1 from mem = $($secret1)"
           #Write-Host "ConvertTo Base64 FOR SECRET 1"
           #$workspaceKey1   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable("WORKSPACEKEY"))))'"))
           #Write-Host "ConvertTo Base64 FROM ENV VARIABLE"
