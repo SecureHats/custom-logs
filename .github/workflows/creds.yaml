@@ -12,8 +12,8 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "Read Secret from variables"
-          $secret1 = "${{ secrets.LONGSECRET }}"
-          $secrets = "${{ toJson(secrets) }}"
+          #$secret1 = "${{ secrets.LONGSECRET }}"
+          [array]$secrets = "${{ toJson(secrets) }}" | ConvertTo-Json
           
           #Write-Host "Generate an error that shows the secret value!!!!"
           #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
