@@ -11,17 +11,20 @@ jobs:
       - name: Perform a test
         shell: pwsh
         run: |
-         Write-Host "Read Secret from variables"
-         $secret1 = "${{ secrets.MYSECRET }}"
-         $secret2 = "$env:MYSECRET"
+          $secret11 = "${{ secrets.WORKSPACEKEY }}"
+          $workspaceKey   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($secret11))))'"))
+          Write-Host "workspaceKey = $($workspaceKey)"
+          Write-Host "Read Secret from variables"
+          $secret1a = "${{ secrets.MYSECRET }}"
+          $secret2a = "$env:MYSECRET"
+
+          Write-host "Secret a = $secret1"
+          Write-host "Secret b = $secret2"
          
-         Write-host "Secret a = $secret1"
-         Write-host "Secret b = $secret2"
+          Write-Host "Create an error"
+          $secret3  = ${{ secrets.MYSECRET }}
          
-         Write-Host "Create an error"
-         $secret3  = ${{ secrets.MYSECRET }}
-         
-         Write-Host "Secret1 from mem = $($secret1)"
+          Write-Host "Secret1 from mem = $($secret1)"
           #Write-Host "ConvertTo Base64 FOR SECRET 1"
           $workspaceKey1   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable("MYSECRET"))))'"))
           #Write-Host "ConvertTo Base64 FROM ENV VARIABLE"
