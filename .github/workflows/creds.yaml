@@ -13,10 +13,12 @@ jobs:
         run: |
           Write-Host "Read Secret from variables"
           $secret1 = ${{ secrets.LONGSECRET }}
-          Write-Host "ConvertTo Base64 FOR SECRET 1"
-          $workspaceKey1   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($secret1))))'"))
-          Write-Host "ConvertTo Base64 FROM ENV VARIABLE"
-          $workspaceKey2   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable("$env:WORKSPACEKEY"))))'"))
-          Write-Host "workspaceKey1 = $($workspaceKey1)"
-          Write-Host "workspaceKey2 = $($workspaceKey2)"
-          Write-Host "Secret1 = $($secret1)"
+          $error
+          
+          #Write-Host "ConvertTo Base64 FOR SECRET 1"
+          #$workspaceKey1   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($secret1))))'"))
+          #Write-Host "ConvertTo Base64 FROM ENV VARIABLE"
+          #$workspaceKey2   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable("$env:WORKSPACEKEY"))))'"))
+          #Write-Host "workspaceKey1 = $($workspaceKey1)"
+          #Write-Host "workspaceKey2 = $($workspaceKey2)"
+          #Write-Host "Secret1 = $($secret1)"
