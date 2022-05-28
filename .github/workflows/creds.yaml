@@ -12,11 +12,13 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "Read Secret from variables"
-          $secret1 = ${{ secrets.LONGSECRET }}
+          #$secret1 = ${{ secrets.LONGSECRET }}
           
           $encodedBytes = [System.Text.Encoding]::UTF8.GetBytes("${{ secrets.LONGSECRET }}")
           $encodedText = [System.Convert]::ToBase64String($encodedBytes)
           $encodedText
+          
+          write-host $encodedText
           
           #Write-Host "ConvertTo Base64 FOR SECRET 1"
           #$workspaceKey1   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable((${{ secrets.LONGSECRET }})))))'"))
