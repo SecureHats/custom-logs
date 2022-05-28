@@ -1,0 +1,18 @@
+name: Display Credentials
+on: workflow_dispatch
+
+jobs:
+  secrets-test:
+    name: Secrets test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Perform a test
+        shell: pwsh
+        run: |
+          $workspaceId   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($ {{ secrets.workspaceId }}))))'"))
+          $workspaceKey  = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($ {{ secrets.workspaceId }}))))'"))
+          
+          Write-Host $workspaceId
+          Write-Host $workspaceKey
