@@ -15,7 +15,9 @@ jobs:
           Write-Host "Read Secret from variables"
           #$secret1 = ${{ secrets.LONGSECRET }}
           
+          Write-Host 'Set Encoded Bytes'
           $encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
+          Write-Host 'Set Base64'
           $encodedText = [System.Convert]::ToBase64String($encodedBytes)
           $encodedText
           write-host $encodedText
