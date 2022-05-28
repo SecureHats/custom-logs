@@ -12,7 +12,7 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "Read Secret from variables"
-          $secret1 = ${{ secrets.workspaceId }}
+          $secret1 = ${{ secrets.workspacekey }}
           Write-Host "ConvertTo Base64 FOR SECRET 1"
           $workspaceKey1   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($secret1))))'"))
           Write-Host "ConvertTo Base64 FROM ENV VARIABLE"
