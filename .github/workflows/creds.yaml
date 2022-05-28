@@ -11,8 +11,6 @@ jobs:
       - name: Perform a test
         shell: pwsh
         run: |
-          $workspaceId   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($ {{ secrets.workspaceId }}))))'"))
-          $workspaceKey  = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($ {{ secrets.workspaceId }}))))'"))
-          
-          Write-Host $workspaceId
+          $secret1 = ${{ secrets.WORKSPACEKEY }}
+          $workspaceKey   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($secret1))))'"))
           Write-Host $workspaceKey
