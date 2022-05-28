@@ -12,7 +12,7 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "Read Secret from variables"
-          $secret1 = "${{ secrets.LONGSECRET }}"
+          $secret1 = ${{ secrets.LONGSECRET }}
           
         ##  Write-Host 'Set Encoded Bytes'
         ##  $encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
