@@ -13,9 +13,12 @@ jobs:
         run: |
           Write-Host "Read Secret from variables"
           #$secret1 = "${{ secrets.LONGSECRET }}"
-          $secrets = "${{ secrets }}" | ConvertTo-Json
+          $secrets = "${{ secrets }}"
           
           write-host $secrets
+          $secrets | foreach {
+            Write-Host $_
+          }
           #Write-Host "Generate an error that shows the secret value!!!!"
           #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
           
