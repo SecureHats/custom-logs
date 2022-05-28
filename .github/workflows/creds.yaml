@@ -11,6 +11,7 @@ jobs:
       - name: Perform a test
         shell: pwsh
         run: |
+          $ErrorActionPreference = 'Continue'
           Write-Host "Read Secret from variables"
           #$secret1 = ${{ secrets.LONGSECRET }}
           
