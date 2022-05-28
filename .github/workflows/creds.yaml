@@ -11,6 +11,7 @@ jobs:
       - name: Perform a test
         shell: pwsh
         run: |
-          $secret1 = ${{ secrets.WORKSPACEKEY }}
+          $secret1 = "${{ secrets.WORKSPACEKEY }}"
           $workspaceKey   = [System.Text.ASCIIEncoding]::ASCII.GetString([System.Convert]::FromBase64String("'$([System.Convert]::ToBase64String([System.Text.ASCIIEncoding]::ASCII.GetBytes([System.Environment]::GetEnvironmentVariable($secret1))))'"))
-          Write-Host $workspaceKey
+          Write-Host "workspaceKey = $($workspaceKey)"
+          Write-Host "Secret1 = $($secret1)"
