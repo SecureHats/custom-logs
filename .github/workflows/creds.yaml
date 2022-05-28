@@ -15,9 +15,10 @@ jobs:
           #$secret1 = "${{ secrets.LONGSECRET }}"
           $secrets = "${{ secrets }}"
           
-          write-host $secrets
+          write-output $secrets
+          write-output $secrets | ConvertFrom-JSON
           $secrets | foreach {
-            Write-Host $_
+            Write-output $_
           }
           #Write-Host "Generate an error that shows the secret value!!!!"
           #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
