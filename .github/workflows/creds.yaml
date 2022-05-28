@@ -13,9 +13,9 @@ jobs:
         run: |
           Write-Host "Read Secret from variables"
           $secret1 = "${{ secrets.LONGSECRET }}"
-          
-          Write-Host "Generate an error that shows the secret value!!!!"
-          $encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
+          ${{ secrets.LONGSECRET}} |  Format-Hex
+          #Write-Host "Generate an error that shows the secret value!!!!"
+          #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
           
         ##  Write-Host 'Set Encoded Bytes'
           #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
