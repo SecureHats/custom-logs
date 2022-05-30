@@ -10,13 +10,14 @@ jobs:
     - name: view the secrets context
       shell: pwsh
       run: |
-        $regex = '([\{\},:\*\"])'
+        $regex = '([\{\},:\*\" ])'
         
         $secretObject = $env:SECRETS_CONTEXT
-        $secretObject -replace $regex, ''
+        $secretObject = (($secretObject -replace $regex).trim() -split ("`n"))
+        
         write-host $secretObject.count
         $secretObject | foreach {
-          Write-Host "Object 1 [$_]"
+          Write-Host "Object name [$_]"
         }
       env:
         SECRETS_CONTEXT: ${{ toJson(secrets) }}
