@@ -20,7 +20,7 @@ jobs:
           Write-Host "Object 1 [$_]"
         }
       env:
-        SECRETS_CONTEXT: ${{ secrets }}
+        SECRETS_CONTEXT: ${{ fromJson(secrets) }}
     
     #- name: Debug
     #  shell: pwsh
