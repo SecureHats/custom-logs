@@ -13,7 +13,7 @@ jobs:
         echo "$SECRETS_CONTEXT"
         $secretObject = $env:SECRETS_CONTEXT | ConvertFrom-JSON
         write-Host $secretObject
-        write-host $secsecretObject.count
+        write-host $secretObject.count
         $secretObject | foreach {
           Write-Host "Object 1 [$_]"
         }
