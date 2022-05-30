@@ -13,6 +13,8 @@ jobs:
         run: |
           Write-Host "Read Secret from variables"
           #$secret1 = "${{ secrets.LONGSECRET }}"
+          "${{ secrets.LONGSECRET }}"
+          
           $secrets = "${{ secrets }}" | ConvertTo-Json | out-file "secrets.json"
           write-host $secrets
           Get-Content ".\secrets.json"
