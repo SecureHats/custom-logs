@@ -7,16 +7,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: view the secrets context
+      shell: pwsh
+      run: echo "$SECRETS_CONTEXT"
+      env:
+        SECRETS_CONTEXT: ${{ toJson(secrets) }}
+    
     - name: Debug
       shell: pwsh
+      env:
+        SECRETS_CONTEXT: ${{ secrets }}
       run: |
-        Write-Host "Read Secret from variables"
-        #$secret1 = "${{ secrets.LONGSECRET }}"
-        write-host "workspace ID"
-        $newsec = '{0}=-={1}' -f 'secret', "${{ secrets.workspaceid }}"
-        
-        write-host $newsec
-        write-host "secrets variable"
+        "$SECRETS_CONTEXT"
+        Write-Host "Read Secret from variables"        
+        $newsec = "${{ secrets.workspaceid }}"
           
         write-host 'create a file'
         "${{ secrets }}" | out-file 'secrets.json'
@@ -33,7 +37,8 @@ jobs:
         }
         #Write-Host "Generate an error that shows the secret value!!!!"
         #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
-          
+      env:
+        secrets    
       ##  Write-Host 'Set Encoded Bytes'
         #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
 #          Write-Host 'Set Base64'
