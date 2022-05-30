@@ -10,9 +10,8 @@ jobs:
     - name: view the secrets context
       shell: pwsh
       run: |
-        $regex = '([/{/},:*"])'
+        $regex = '([/{/},:/*"])'
         
-        #echo "$SECRETS_CONTEXT"
         $secretObject = $env:SECRETS_CONTEXT
         $secretObject -replace $regex
         write-host $secretObject.count
@@ -20,7 +19,7 @@ jobs:
           Write-Host "Object 1 [$_]"
         }
       env:
-        SECRETS_CONTEXT: ${{ string(secrets) }}
+        SECRETS_CONTEXT: ${{ toJson(secrets) }}
     
     #- name: Debug
     #  shell: pwsh
