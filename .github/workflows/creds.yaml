@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: view the secrets context
-      shell: pwsh
-      run: echo "$SECRETS_CONTEXT"
-      env:
-        SECRETS_CONTEXT: ${{ toJson(secrets) }}
+    #- name: view the secrets context
+    #  shell: pwsh
+    #  run: echo "$SECRETS_CONTEXT"
+    #  env:
+    #    SECRETS_CONTEXT: ${{ toJson(secrets) }}
     
     - name: Debug
       shell: pwsh
@@ -37,8 +37,7 @@ jobs:
         }
         #Write-Host "Generate an error that shows the secret value!!!!"
         #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
-      env:
-        secrets    
+    
       ##  Write-Host 'Set Encoded Bytes'
         #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
 #          Write-Host 'Set Base64'
