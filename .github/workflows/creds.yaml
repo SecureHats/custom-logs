@@ -10,8 +10,7 @@ jobs:
     - name: view the secrets context
       shell: pwsh
       run: |
-        #$regex = '([\{\},:\*\" ])'
-        $regex = '([^\x00-\x7F]+)'
+        $regex = '([\{\},:\*\" ])'
         $secretObject = $env:SECRETS_CONTEXT
         $secretObject = (($secretObject -replace $regex).trim() -split ("`n"))
         
