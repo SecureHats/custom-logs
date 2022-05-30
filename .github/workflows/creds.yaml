@@ -10,7 +10,7 @@ jobs:
     - name: view the secrets context
       shell: pwsh
       run: |
-        echo "$SECRETS_CONTEXT"
+        #echo "$SECRETS_CONTEXT"
         $secretObject = $env:SECRETS_CONTEXT | ConvertFrom-JSON
         write-Host $secretObject
         write-host $secretObject.count
