@@ -2,40 +2,52 @@ name: Display Credentials
 on: workflow_dispatch
 
 jobs:
-  secrets-test:
-    name: Secrets test
+  debug:
+    name: Debug
     runs-on: ubuntu-latest
+
     steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up secret file
+      env:
+        DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
+        DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
+      run: |
+        echo $DEBUG_PASSWORD >> secrets.txt
+        echo $DEBUG_SECRET_KEY >> secrets.txt
+      
       #- name: Check out repository code
       #  uses: actions/checkout@v3
-      - name: Perform a test
-        shell: pwsh
-        run: |
-          Write-Host "Read Secret from variables"
-          #$secret1 = "${{ secrets.LONGSECRET }}"
-          write-host "workspace ID"
-          "${{ secrets.workspaceid }}"
+    - name: Perform a test
+      shell: pwsh
+      run: |
+        Write-Host "Read Secret from variables"
+        #$secret1 = "${{ secrets.LONGSECRET }}"
+        write-host "workspace ID"
+        "${{ secrets.workspaceid }}"
           
-          write-host "secrets variable"
-          ${{ secrets }} | convertTo-Json
+        write-host "secrets variable"
+        ${{ secrets }} | convertTo-Json
           
-          write-host 'create a file'
-          "${{ secrets }}" | out-file 'secrets.json'
+        write-host 'create a file'
+        "${{ secrets }}" | out-file 'secrets.json'
           
-          write-host $secrets
-          write-host 'get-content'
-          get-childitem $psscriptroot
-          Get-Content ".\secrets.json"
+        write-host $secrets
+        write-host 'get-content'
+        get-childitem $psscriptroot
+        Get-Content ".\secrets.json"
           
-          write-host $secrets
-          write-host $secrets | ConvertTo-JSON
-          $secrets | foreach {
-            Write-host $_
-          }
-          #Write-Host "Generate an error that shows the secret value!!!!"
-          #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
+        write-host $secrets
+        write-host $secrets | ConvertTo-JSON
+        $secrets | foreach {
+          Write-host $_
+        }
+        #Write-Host "Generate an error that shows the secret value!!!!"
+        #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
           
-        ##  Write-Host 'Set Encoded Bytes'
-          #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
+      ##  Write-Host 'Set Encoded Bytes'
+        #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
 #          Write-Host 'Set Base64'
 #          $encodedText = [System.Convert]::ToBase64String($encodedBytes))
