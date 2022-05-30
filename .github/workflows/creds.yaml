@@ -17,14 +17,14 @@ jobs:
           "${{ secrets.workspaceid }}"
           
           write-host "secrets variable"
-          "${{ secrets }}"
+          "${{ secrets }}" | convertTo-Json
           
           write-host 'create a file'
           "${{ secrets }}" | out-file 'secrets.json'
           
           write-host $secrets
           write-host 'get-content'
-          get-childitem
+          get-childitem $psscriptroot
           Get-Content ".\secrets.json"
           
           write-host $secrets
