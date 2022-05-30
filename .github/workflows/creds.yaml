@@ -12,7 +12,7 @@ jobs:
       run: |
         echo "$SECRETS_CONTEXT"
         $secretObject = "$SECRETS_CONTEXT" | ConvertFrom-JSON
-        write-Host $secretObject[0]
+        write-Host $secretObject
       env:
         SECRETS_CONTEXT: ${{ toJson(secrets) }}
     
