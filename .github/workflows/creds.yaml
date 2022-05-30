@@ -10,9 +10,11 @@ jobs:
     - name: view the secrets context
       shell: pwsh
       run: |
+        $regex = '([/{/},:*"])'
+        
         #echo "$SECRETS_CONTEXT"
         $secretObject = $env:SECRETS_CONTEXT
-        write-Host $secretObject
+        write-Host $secretObject -replace $regex
         write-host $secretObject.count
         $secretObject | foreach {
           Write-Host "Object 1 [$_]"
