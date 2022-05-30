@@ -10,7 +10,7 @@ jobs:
     - name: view the secrets context
       shell: pwsh
       run: |
-        $regex = '([/{/},:/*/"])'
+        $regex = '([/{/},:\\*"])'
         
         $secretObject = $env:SECRETS_CONTEXT
         $secretObject -replace $regex, ''
