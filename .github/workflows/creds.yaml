@@ -11,7 +11,7 @@ jobs:
       shell: pwsh
       run: |
         #echo "$SECRETS_CONTEXT"
-        $secretObject = $env:SECRETS_CONTEXT | ConvertFrom-JSON
+        $secretObject = $env:SECRETS_CONTEXT
         write-Host $secretObject
         write-host $secretObject.count
         $secretObject | foreach {
