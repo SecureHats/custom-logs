@@ -13,10 +13,18 @@ jobs:
         run: |
           Write-Host "Read Secret from variables"
           #$secret1 = "${{ secrets.LONGSECRET }}"
-          "${{ secrets.LONGSECRET }}"
+          write-host "workspace ID"
+          "${{ secrets.workspaceid }}"
           
-          $secrets = "${{ secrets }}" | ConvertTo-Json | out-file "secrets.json"
+          write-host "secrets variable"
+          "${{ secrets }}"
+          
+          write-host 'create a file'
+          "${{ secrets }}" | out-file 'secrets.json'
+          
           write-host $secrets
+          write-host 'get-content'
+          get-childitem
           Get-Content ".\secrets.json"
           
           write-host $secrets
