@@ -13,7 +13,7 @@ jobs:
         $regex = '([/{/},:/*"])'
         
         $secretObject = $env:SECRETS_CONTEXT
-        $secretObject -replace $regex
+        $secretObject -replace $regex, ''
         write-host $secretObject.count
         $secretObject | foreach {
           Write-Host "Object 1 [$_]"
