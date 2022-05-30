@@ -16,7 +16,7 @@ jobs:
         
         write-host $secretObject.count
         $secretObject | 
-        Select-String -Pattern '(.*?):' -AllMatches $_.Matches |
+        Select-String -Pattern '(.*?):' -AllMatches |
         ForEach-Object {
         Write-Host $_
         }
