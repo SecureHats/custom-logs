@@ -13,7 +13,7 @@ jobs:
         Write-Host "Read Secret from variables"
         #$secret1 = "${{ secrets.LONGSECRET }}"
         write-host "workspace ID"
-        $newsec = '{0}=-={1}', -f 'secret', "${{ secrets.workspaceid }}"
+        $newsec = '{0}=-={1}' -f 'secret', "${{ secrets.workspaceid }}"
         
         write-host $newsec
         write-host "secrets variable"
