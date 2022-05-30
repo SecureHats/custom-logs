@@ -14,7 +14,7 @@ jobs:
         
         #echo "$SECRETS_CONTEXT"
         $secretObject = $env:SECRETS_CONTEXT
-        write-Host $secretObject -replace $regex
+        $secretObject -replace $regex
         write-host $secretObject.count
         $secretObject | foreach {
           Write-Host "Object 1 [$_]"
