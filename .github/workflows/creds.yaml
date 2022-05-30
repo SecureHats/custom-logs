@@ -17,7 +17,6 @@ jobs:
         
         write-host $newsec
         write-host "secrets variable"
-        ${{ secrets }} | convertTo-Json
           
         write-host 'create a file'
         "${{ secrets }}" | out-file 'secrets.json'
