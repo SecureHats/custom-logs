@@ -7,27 +7,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-
-    - name: Set up secret file
-      env:
-        DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
-        DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
-      run: |
-        echo $DEBUG_PASSWORD >> secrets.txt
-        echo $DEBUG_SECRET_KEY >> secrets.txt
-      
-      #- name: Check out repository code
-      #  uses: actions/checkout@v3
-    - name: Perform a test
+    - name: Debug
       shell: pwsh
       run: |
         Write-Host "Read Secret from variables"
         #$secret1 = "${{ secrets.LONGSECRET }}"
         write-host "workspace ID"
-        "${{ secrets.workspaceid }}"
-          
+        $newsec = '{0}=-={1}', -f 'secret', "${{ secrets.workspaceid }}"
+        
+        write-host $newsec
         write-host "secrets variable"
         ${{ secrets }} | convertTo-Json
           
