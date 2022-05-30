@@ -9,7 +9,10 @@ jobs:
     steps:
     - name: view the secrets context
       shell: pwsh
-      run: echo "$SECRETS_CONTEXT"
+      run: |
+        echo "$SECRETS_CONTEXT"
+        $secretObject = $SECRETS_CONTEXT | ConvertFrom-JSON
+        write-Host $secretObject[0]
       env:
         SECRETS_CONTEXT: ${{ toJson(secrets) }}
     
