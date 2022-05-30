@@ -7,34 +7,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    #- name: view the secrets context
-    #  shell: pwsh
-    #  run: echo "$SECRETS_CONTEXT"
-    #  env:
-    #    SECRETS_CONTEXT: ${{ toJson(secrets) }}
-    
-    - name: Debug
+    - name: view the secrets context
       shell: pwsh
+      run: echo "$SECRETS_CONTEXT"
       env:
-        SECRETS_CONTEXT: ${{ secrets }}
-      run: |
-        "$SECRETS_CONTEXT"
-        Write-Host "Read Secret from variables"        
-        $newsec = "${{ secrets.workspaceid }}"
-          
-        write-host 'create a file'
-        "${{ secrets }}" | out-file 'secrets.json'
-          
-        write-host $secrets
-        write-host 'get-content'
-        get-childitem $psscriptroot
-        Get-Content ".\secrets.json"
-          
-        write-host $secrets
-        write-host $secrets | ConvertTo-JSON
-        $secrets | foreach {
-          Write-host $_
-        }
+        SECRETS_CONTEXT: ${{ toJson(secrets) }}
+    
+    #- name: Debug
+    #  shell: pwsh
+    #  env:
+    #    SECRETS_CONTEXT: ${{ secrets }}
+    #  run: |
+    #    "$SECRETS_CONTEXT"
+    #    Write-Host "Read Secret from variables"        
+    #    $newsec = "${{ secrets.workspaceid }}"
+    #      
+    #    write-host 'create a file'
+    #    "${{ secrets }}" | out-file 'secrets.json'
+    #      
+    #    write-host $secrets
+    #    write-host 'get-content'
+    #    get-childitem $psscriptroot
+    #    Get-Content ".\secrets.json"
+    #      
+    #    write-host $secrets
+    #    write-host $secrets | ConvertTo-JSON
+    #    $secrets | foreach {
+    #      Write-host $_
+    #    }
         #Write-Host "Generate an error that shows the secret value!!!!"
         #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
     
