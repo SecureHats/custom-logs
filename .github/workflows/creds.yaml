@@ -10,16 +10,16 @@ jobs:
     - name: view the secrets context
       shell: pwsh
       run: |
-        $regex = '([\{\},\* ])(?<=\").+?(?=\"\:)'
+        $regex = '([\{\},\* ])'
         $regexB = '(?<=\").+?(?=\"\:)'
         $secretObject = $env:SECRETS_CONTEXT
         $secretObject = (($secretObject -replace $regex).trim() -split ("`n"))
-        write-host $secretObject
+        
         write-host $secretObject.count        
         $secretObject | ForEach-Object {
-        #$value = ([regex]::Matches($_, $regexB).Value
-        #Write-Host "Configured secrets:"
-        #$value
+        $value = ([regex]::Matches($_, $regexB).Value
+        Write-Host "Configured secrets:"
+        $value
         }
       env:
         SECRETS_CONTEXT: ${{ toJson(secrets) }}
