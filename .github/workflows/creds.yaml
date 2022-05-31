@@ -11,10 +11,10 @@ jobs:
       shell: pwsh
       run: |
         $regex = '([\{\},\* ])'
-        $regexB = '(?<=\").+?(?=\"\:)'
+        $regexB = '(?<=\").+?(?=\"\:)([\{\},\* ])'
         $secretObject = $env:SECRETS_CONTEXT
         $secretObject = (($secretObject -replace $regex).trim() -split ("`n"))
-        
+        write-host $secretObject
         write-host $secretObject.count        
         $secretObject | ForEach-Object {
         $value = ([regex]::Matches($_, $regexB).Value
@@ -23,33 +23,3 @@ jobs:
         }
       env:
         SECRETS_CONTEXT: ${{ toJson(secrets) }}
-    
-    #- name: Debug
-    #  shell: pwsh
-    #  env:
-    #    SECRETS_CONTEXT: ${{ secrets }}
-    #  run: |
-    #    "$SECRETS_CONTEXT"
-    #    Write-Host "Read Secret from variables"        
-    #    $newsec = "${{ secrets.workspaceid }}"
-    #      
-    #    write-host 'create a file'
-    #    "${{ secrets }}" | out-file 'secrets.json'
-    #      
-    #    write-host $secrets
-    #    write-host 'get-content'
-    #    get-childitem $psscriptroot
-    #    Get-Content ".\secrets.json"
-    #      
-    #    write-host $secrets
-    #    write-host $secrets | ConvertTo-JSON
-    #    $secrets | foreach {
-    #      Write-host $_
-    #    }
-        #Write-Host "Generate an error that shows the secret value!!!!"
-        #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
-    
-      ##  Write-Host 'Set Encoded Bytes'
-        #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ secrets.LONGSECRET }})
-#          Write-Host 'Set Base64'
-#          $encodedText = [System.Convert]::ToBase64String($encodedBytes))
