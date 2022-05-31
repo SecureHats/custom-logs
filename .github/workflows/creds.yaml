@@ -11,12 +11,14 @@ jobs:
       shell: pwsh
       run: |
         $regex = '([\{\},\* ])'
+        $regexB = '(?<=\")(.*?)(?=\")'
         $secretObject = $env:SECRETS_CONTEXT
         $secretObject = (($secretObject -replace $regex).trim() -split ("`n"))
         
         write-host $secretObject.count        
         $secretObject | ForEach-Object {
-        Write-Host $_.trimEnd(':***')
+        $value = [regex]::Matches($_, $regexB).Value
+        Write-Host $value
         }
       env:
         SECRETS_CONTEXT: ${{ toJson(secrets) }}
