@@ -14,11 +14,9 @@ jobs:
         $secretObject = $env:SECRETS_CONTEXT
         $secretObject = (($secretObject -replace $regex).trim() -split ("`n"))
         
-        write-host $secretObject.count
-        $secretObject | 
-        Select-String -Pattern '(.*?):' -AllMatches |
+        write-host $secretObject.count        
         ForEach-Object {
-        Write-Host $_
+        Write-Host $_.trimEnd(':***')
         }
       env:
         SECRETS_CONTEXT: ${{ toJson(secrets) }}
