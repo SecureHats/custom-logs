@@ -17,7 +17,7 @@ jobs:
         
         write-host $secretObject.count        
         $secretObject | ForEach-Object {
-        $value = ([regex]::Matches($_, $regexB).Value
+        $value = ([regex]::Matches($_, $regexB)).Value
         Write-Host "Configured secrets:"
         $value
         }
