@@ -11,7 +11,7 @@ jobs:
       shell: pwsh
       run: |
         $regex = '([\{\},\* ])'
-        $regexB = '(?<=\").+?(?=\")'
+        $regexB = '(?<=\").+?(?=\"\:)'
         $secretObject = $env:SECRETS_CONTEXT
         $secretObject = (($secretObject -replace $regex).trim() -split ("`n"))
         
