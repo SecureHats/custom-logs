@@ -17,9 +17,10 @@ jobs:
         
         write-host $secretObject.count        
         $secretObject | ForEach-Object {
-        $value = 'secrets.{0}' -f [regex]::Matches($_, $regexB).Value
+        $value = '${{ secrets.{0} }}' -f [regex]::Matches($_, $regexB).Value
         Write-Host $value
-        $encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ $value }})
+        
+        #$encodedBytes = [System.Text.Encoding]::UTF8.GetBytes(${{ $value }})
         }
       env:
         SECRETS_CONTEXT: ${{ toJson(secrets) }}
