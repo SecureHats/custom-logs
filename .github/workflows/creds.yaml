@@ -15,7 +15,7 @@ jobs:
         $secretObject = (($secretObject -replace $regex).trim() -split ("`n"))
         
         write-host $secretObject.count        
-        ForEach-Object {
+        $secretObject | ForEach-Object {
         Write-Host $_.trimEnd(':***')
         }
       env:
