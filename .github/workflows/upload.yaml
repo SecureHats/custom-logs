@@ -1,8 +1,8 @@
-name: Code Validation
+name: Custom Logs
 on:
   push:
     paths:
-      - analyticRules/**
+      - samples/**
 
 jobs:
   pester-test:
@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Testing Microsoft Sentinel Analytics Rules
+      - name: Testing Microsoft Sentinel Custom Data
         shell: pwsh
         run: |
-          ./action.ps1 -filesPath "analyticRules" -logLevel "Diagnostic"
+          ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath samples
