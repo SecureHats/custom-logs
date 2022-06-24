@@ -1,0 +1,17 @@
+name: Code Validation
+on:
+  push:
+    paths:
+      - analyticRules/**
+
+jobs:
+  pester-test:
+    name: Code Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Testing Microsoft Sentinel Analytics Rules
+        shell: pwsh
+        run: |
+          ./action.ps1 -filesPath "analyticRules" -logLevel "Diagnostic"
