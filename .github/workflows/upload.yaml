@@ -14,4 +14,4 @@ jobs:
       - name: Testing Microsoft Sentinel Custom Data
         shell: pwsh
         run: |
-          ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath samples -tableName GitHub
+          ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath samples -tableName 'MyWorld'
