@@ -1,5 +1,5 @@
 name: 'custom-logs'
-description: 'Import- custom logs into Microsoft Sentinel custom tables. Supported file types for sample data are json csv'
+description: 'Import custom logs into Microsoft Sentinel custom tables. Supported file types for sample data are json csv'
 inputs:
   filesPath:
     description:  'FileType to import into the workspace.'
