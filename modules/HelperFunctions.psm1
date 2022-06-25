@@ -180,6 +180,6 @@ function Send-CustomLogs {
         $postObject.timestamp = [DateTime]::UtcNow.ToString("r")
     }
 
-    Write-Host "Sending data"
+    Write-Host "Sending data to [$($logType + '_CL')]"
     Set-LogAnalyticsData @postObject
 }
