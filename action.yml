@@ -1,5 +1,8 @@
 name: 'custom-logs'
 description: 'Import custom logs into Microsoft Sentinel custom tables. Supported file types for sample data are json csv'
+branding:
+  icon: 'check-square'
+  color: 'green'
 inputs:
   filesPath:
     description:  'FileType to import into the workspace.'
@@ -9,5 +12,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    shell: pwsh
-    run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath ${{ inputs.filesPath }}
+    - run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath ${{ inputs.filesPath }}
+      shell: pwsh
