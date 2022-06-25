@@ -111,14 +111,14 @@ Function Get-Workspace {
                     | ConvertTo-SecureString -AsPlainText -Force
                 }
                 catch {
-                    Write-Warning -Message "Log Analytics workspace key for [$($WorkspaceName)] not found."
+                    Write-Warning -Message "Log Analytics workspace key for [$($workspaceName)] not found."
                     break
                 }
             }
             return $workspaceObject
         }
         catch {
-            Write-Warning -Message "Log Analytics workspace [$($WorkspaceName)] not found in the current context"
+            Write-Warning -Message "Log Analytics workspace [$($workspaceName)] not found in the current context"
             break
         }
     }
@@ -158,7 +158,7 @@ function Send-CustomLogs {
                 $postObject.body = ([System.Text.Encoding]::UTF8.GetBytes(($tempdata | ConvertTo-Json)))
                 $postObject.timestamp = [DateTime]::UtcNow.ToString("r")
 
-                write-Host "Sending block data = $TempDataSize"
+                Write-Host "Sending block data = $TempDataSize"
                 Set-LogAnalyticsData @postObject
 
                 $tempdata = $null
@@ -180,6 +180,6 @@ function Send-CustomLogs {
         $postObject.timestamp = [DateTime]::UtcNow.ToString("r")
     }
 
-    Write-Host "Sending data to [$($logType + '_CL')]"
+    Write-Host "Sending data to [$($tableName + '_CL')]"
     Set-LogAnalyticsData @postObject
 }
