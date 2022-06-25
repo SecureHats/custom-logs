@@ -1,17 +1,35 @@
-name: Custom Logs
+# name: Custom Logs
+# on:
+#   push:
+#     paths:
+#       - samples/**
+
+# jobs:
+#   pester-test:
+#     name: Code Validation
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out repository code
+#         uses: actions/checkout@v3
+#       - name: Testing Microsoft Sentinel Custom Data
+#         shell: pwsh
+#         run: |
+#           ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath samples
+
+name: CustomLogs
 on:
   push:
     paths:
       - samples/**
 
 jobs:
-  pester-test:
-    name: Code Validation
+  custom-logs:
+    name: validate detections
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Testing Microsoft Sentinel Custom Data
-        shell: pwsh
-        run: |
-          ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath samples
+      - name: Microsoft Sentinel Custom Logs
+        uses: SecureHats/custom-logs@v1
+        with:
+          filesPath: samples
