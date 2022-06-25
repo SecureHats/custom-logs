@@ -66,7 +66,7 @@ $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
         }
         catch { Write-Host "Unable to process JSON file [$_]" }
     } else {
-        Write-Host "Nothing to progress"
+        if ($files.count -eq 0) { Write-Host "Nothing to progress" }
     }
 }
 
