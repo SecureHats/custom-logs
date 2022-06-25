@@ -30,6 +30,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Microsoft Sentinel Custom Logs
-        uses: SecureHats/custom-logs@v1
+        uses: SecureHats/custom-logs@v.0.1.0-alpha
         with:
           filesPath: samples
