@@ -1,7 +1,7 @@
 ![logo](https://raw.githubusercontent.com/SecureHats/SecureHacks/main/media/sh-banners.png)
 =========
 [![Maintenance](https://img.shields.io/maintenance/yes/2022.svg?style=flat-square)]()
-# Microsoft Sentinel - Analytics Rules Validator
+# Microsoft Sentinel - Custom Logs Ingestor
 
 This GitHub action can be used to send custom log data to Microsoft Sentinel in both JSON and CSV format.
 > Add the following code block to your Github workflow:
