@@ -8,9 +8,17 @@ inputs:
     description:  'FileType to import into the workspace.'
     required: false
     default: '.'
+  workspaceId:
+    description:  'Workspace Key for Log Analytics workspace.'
+    required: true
+    default: '.'
+  workspaceKey:
+    description:  'Workspace Key for Log Analytics workspace.'
+    required: true
+    default: '.'
 
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath ${{ inputs.filesPath }}
+    - run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ inputs.WORKSPACEID }} -workspaceKey ${{ inputs.WORKSPACEKEY }} -filesPath ${{ inputs.filesPath }}
       shell: pwsh
