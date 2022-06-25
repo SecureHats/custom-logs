@@ -30,6 +30,8 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Microsoft Sentinel Custom Logs
-        uses: SecureHats/custom-logs@v0.1.0-alpha
+        uses: SecureHats/custom-logs@v0.1.1-alpha
         with:
           filesPath: samples
+          workspaceId: ${{ secrets.WORKSPACEID }}
+          workspaceKey: ${{ secrets.WORKSPACEKEY }}
