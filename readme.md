@@ -15,7 +15,7 @@ on:
 
 jobs:
   custom-logs:
-    name: validate detections
+    name: Custom Logs
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
