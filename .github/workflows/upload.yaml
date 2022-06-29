@@ -21,6 +21,7 @@ on:
   pull_request:
     paths:
       - samples/**
+    types: [closed]
 
 jobs:
   custom-logs:
