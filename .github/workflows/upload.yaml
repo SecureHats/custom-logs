@@ -18,7 +18,7 @@
 
 name: CustomLogs
 on:
-  push:
+  pull_request:
     paths:
       - samples/**
 
