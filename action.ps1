@@ -46,7 +46,7 @@ if ($null -ne "$Separator") {
     $FilesPath = $FilesPath -split ("$Separator")
 }
 
-$files = Get-ChildItem -Path $FilesPath | ForEach-Object {
+$files = Get-ChildItem -Path @($FilesPath) | ForEach-Object {
     if ($_.FullName -like "*.csv") {
         try {
             $parameters.dataInput = (Get-Content $_.FullName | ConvertFrom-CSV)
