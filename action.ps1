@@ -32,9 +32,6 @@ param (
 Get-ChildItem $($PSScriptRoot)
 Import-Module "$($PSScriptRoot)/modules/HelperFunctions.psm1"
 
-Write-Output "Also dot source"
-. "$($PSScriptRoot)/modules/HelperFunctions.psm1"
-
 $parameters = @{
     workspaceId   = $workspaceId
     workspaceKey  = $workspaceKey | ConvertTo-SecureString -AsPlainText -Force
@@ -42,15 +39,11 @@ $parameters = @{
     dataInput     = ''
 }
 
-$filesThatWereChanged=$(echo $(git diff origin/main --diff-filter=M --name-only))
-
-# if ($FilesPath -ne '.') {
-#     Write-Output  "Files path is [$FilesPath]"
-# }
-
-foreach ($file in $filesThatWereChanged) {
-    Write-Output $file
+if ($FilesPath -ne '.') {
+    Write-Output  "Files path is [$FilesPath]"
 }
+
+
 $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
     if ($_.FullName -like "*.csv") {
         try {
