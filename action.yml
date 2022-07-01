@@ -5,15 +5,19 @@ branding:
   color: 'green'
 inputs:
   filesPath:
-    description:  'FileType to import into the workspace.'
+    description:  'Folder to import into the workspace.'
     required: false
     default: '.'
+  separator:
+    description:  'Separator when using multiple paths.'
+    required: false
+    default: ''
   workspaceId:
-    description:  'Workspace Key for Log Analytics workspace.'
+    description:  'Workspace Id for the Log Analytics workspace.'
     required: true
     default: '.'
   workspaceKey:
-    description:  'Workspace Key for Log Analytics workspace.'
+    description:  'Workspace Key for the Log Analytics workspace.'
     required: true
     default: '.'
 
