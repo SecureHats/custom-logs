@@ -1,3 +1,9 @@
+name: Custom Logs
+on:
+  push:
+    paths:
+      - samples/**
+
 jobs:
   changedfiles:
     runs-on: ubuntu-latest
