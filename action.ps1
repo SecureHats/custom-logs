@@ -42,7 +42,7 @@ $parameters = @{
     dataInput     = ''
 }
 
-$filesThatWereChanged=$(echo $(git diff origin/master --diff-filter=M --name-only))
+$filesThatWereChanged=$(echo $(git diff origin/main --diff-filter=M --name-only))
 
 # if ($FilesPath -ne '.') {
 #     Write-Output  "Files path is [$FilesPath]"
