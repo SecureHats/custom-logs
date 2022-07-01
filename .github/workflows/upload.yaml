@@ -24,7 +24,7 @@ jobs:
         shell: pwsh
         run: |
             
-            ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath ${{ steps.changed-files.outputs.all_changed_files }} -separator ','
+            ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath '${{ steps.changed-files.outputs.all_changed_files }}' -separator ','
 # name: CustomLogs
 # on:
 #   pull_request:
