@@ -1,21 +1,3 @@
-# name: Custom Logs
-# on:
-#   push:
-#     paths:
-#       - samples/**
-
-# jobs:
-#   pester-test:
-#     name: Code Validation
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Check out repository code
-#         uses: actions/checkout@v3
-#       - name: Testing Microsoft Sentinel Custom Data
-#         shell: pwsh
-#         run: |
-#           ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath samples
-
 name: CustomLogs
 on:
   pull_request:
