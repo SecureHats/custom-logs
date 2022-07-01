@@ -25,6 +25,5 @@ jobs:
         uses: SecureHats/custom-logs@v0.2.3
         with:
           filesPath: '${{ steps.changed-files.outputs.all_changed_files }}'
-          separator: ','
           workspaceId: ${{ secrets.WORKSPACEID }}
           workspaceKey: ${{ secrets.WORKSPACEKEY }}
