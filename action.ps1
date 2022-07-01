@@ -42,10 +42,15 @@ $parameters = @{
     dataInput     = ''
 }
 
-if ($FilesPath -ne '.') {
-    Write-Output  "Files path is [$FilesPath]"
-}
+$filesThatWereChanged=$(echo $(git diff origin/master --diff-filter=M --name-only))
 
+# if ($FilesPath -ne '.') {
+#     Write-Output  "Files path is [$FilesPath]"
+# }
+
+foreach ($file in $filesThatWereChanged) {
+    Writ-Host $file
+}
 $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
     if ($_.FullName -like "*.csv") {
         try {
