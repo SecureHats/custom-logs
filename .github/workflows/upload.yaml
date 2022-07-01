@@ -1,24 +1,41 @@
-name: CustomLogs
+name: Custom Logs
 on:
-  pull_request:
+  push:
     paths:
       - samples/**
-    types: [closed]
 
 jobs:
-  custom-logs:
-    name: custom logs insgestor
+  pester-test:
+    name: Code Validation
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-        with:
-            ref: ${{github.event.pull_request.head.ref}}
-            repository: ${{github.event.pull_request.head.repo.full_name}}
+      - name: Testing Microsoft Sentinel Custom Data
+        shell: pwsh
+        run: |
+          ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath samples
+# name: CustomLogs
+# on:
+#   pull_request:
+#     paths:
+#       - samples/**
+#     types: [closed]
 
-      - name: Microsoft Sentinel Custom Logs
-        uses: SecureHats/custom-logs@v0.2.0
-        with:
-          filesPath: samples
-          workspaceId: ${{ secrets.WORKSPACEID }}
-          workspaceKey: ${{ secrets.WORKSPACEKEY }}
+# jobs:
+#   custom-logs:
+#     name: custom logs insgestor
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out repository code
+#         uses: actions/checkout@v3
+#         with:
+#             ref: ${{github.event.pull_request.head.ref}}
+#             repository: ${{github.event.pull_request.head.repo.full_name}}
+
+#       - name: Microsoft Sentinel Custom Logs
+#         uses: SecureHats/custom-logs@v0.2.0
+#         with:
+#           filesPath: samples
+#           workspaceId: ${{ secrets.WORKSPACEID }}
+#           workspaceKey: ${{ secrets.WORKSPACEKEY }}
