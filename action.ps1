@@ -16,7 +16,7 @@
 
 param (
     [parameter(Mandatory = $true)]
-    [string]$FilesPath,
+    [array]$FilesPath,
 
     [parameter(Mandatory = $true)]
     [string]$WorkspaceId,
