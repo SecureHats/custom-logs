@@ -24,7 +24,7 @@ jobs:
       - name: Microsoft Sentinel Custom Logs
         uses: SecureHats/custom-logs@v0.2.2
         with:
-          filesPath: '${{ steps.changed-files.outputs.all_changed_files }}'
+          filesPath: "${{ steps.changed-files.outputs.all_changed_files }}"
           separator: ','
           workspaceId: ${{ secrets.WORKSPACEID }}
           workspaceKey: ${{ secrets.WORKSPACEKEY }}
