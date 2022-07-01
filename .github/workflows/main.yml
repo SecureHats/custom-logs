@@ -22,7 +22,7 @@ jobs:
           separator: ","
       
       - name: Microsoft Sentinel Custom Logs
-        uses: SecureHats/custom-logs@v0.2.0
+        uses: SecureHats/custom-logs@v0.2.1
         with:
           filesPath: '${{ steps.changed-files.outputs.all_changed_files }}'
           separator: ','
