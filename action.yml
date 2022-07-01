@@ -11,7 +11,7 @@ inputs:
   separator:
     description:  'Separator when using multiple paths.'
     required: false
-    default: ''
+    default: ','
   workspaceId:
     description:  'Workspace Id for the Log Analytics workspace.'
     required: true
@@ -24,5 +24,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ inputs.WORKSPACEID }} -workspaceKey ${{ inputs.WORKSPACEKEY }} -filesPath ${{ inputs.filesPath }}
+    - run: ${{ github.action_path }}/action.ps1 -workspaceId ${{ inputs.WORKSPACEID }} -workspaceKey ${{ inputs.WORKSPACEKEY }} -filesPath ${{ inputs.filesPath }} -separator
       shell: pwsh
