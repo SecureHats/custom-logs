@@ -49,7 +49,7 @@ $filesThatWereChanged=$(echo $(git diff origin/main --diff-filter=M --name-only)
 # }
 
 foreach ($file in $filesThatWereChanged) {
-    Writ-Host $file
+    Write-Output $file
 }
 $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
     if ($_.FullName -like "*.csv") {
