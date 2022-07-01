@@ -11,10 +11,23 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Testing Microsoft Sentinel Custom Data
+        with:      
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v23.1
+
+      - name: List all changed files
         shell: pwsh
         run: |
-          ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath samples
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath $file
+            
+#       - name: Testing Microsoft Sentinel Custom Data
+#         shell: pwsh
+#         run: |
+#           ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath samples
 # name: CustomLogs
 # on:
 #   pull_request:
