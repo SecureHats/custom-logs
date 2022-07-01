@@ -19,13 +19,16 @@ param (
     [string]$FilesPath,
 
     [parameter(Mandatory = $true)]
-    [string]$workspaceId,
+    [string]$WorkspaceId,
 
     [parameter(Mandatory = $true)]
-    [string]$workspaceKey,
+    [string]$WorkspaceKey,
 
     [parameter(Mandatory = $false)]
-    [string]$tableName
+    [string]$TableName,
+    
+    [parameter(Mandatory = $false)]
+    [string]$Separator
 )
 
 # Import custom modules
@@ -33,16 +36,15 @@ Get-ChildItem $($PSScriptRoot)
 Import-Module "$($PSScriptRoot)/modules/HelperFunctions.psm1"
 
 $parameters = @{
-    workspaceId   = $workspaceId
-    workspaceKey  = $workspaceKey | ConvertTo-SecureString -AsPlainText -Force
+    workspaceId   = $WorkspaceId
+    workspaceKey  = $WorkspaceKey | ConvertTo-SecureString -AsPlainText -Force
     tableName     = $TableName
     dataInput     = ''
 }
 
-if ($FilesPath -ne '.') {
-    Write-Output  "Files path is [$FilesPath]"
+if ($null -ne "$Separator") {
+    $FilesPath = $FilesPath -split ("$Separator")
 }
-
 
 $files = Get-ChildItem -Path $FilesPath | ForEach-Object {
     if ($_.FullName -like "*.csv") {
