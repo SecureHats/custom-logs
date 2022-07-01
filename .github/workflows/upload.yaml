@@ -21,9 +21,7 @@ jobs:
       - name: Testing Microsoft Sentinel Custom Data
         shell: pwsh
         run: |
-          foreach ($file in ${{ steps.changed-files.outputs.all_changed_files }}) {
-            ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath $file
-          }
+            ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath ${{ steps.changed-files.outputs.all_changed_files }}
 # name: CustomLogs
 # on:
 #   pull_request:
