@@ -1,57 +1,57 @@
-# name: CustomLogs
-# on:
-#   push:
-#     paths:
-#       - samples/**
-
-# jobs:
-#   custom-logs:
-#     name: custom logs insgestor
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Check out repository code
-#         uses: actions/checkout@v3
-#         with:
-#             ref: ${{github.event.pull_request.head.ref}}
-#             repository: ${{github.event.pull_request.head.repo.full_name}}
-
-#       - name: Get changed files
-#         id: changed-files
-#         uses: tj-actions/changed-files@v23.1
-#         with:
-#           separator: ","
-      
-#       - name: Microsoft Sentinel Custom Logs
-#         uses: SecureHats/custom-logs@v0.2.1
-#         with:
-#           filesPath: ${{ steps.changed-files.outputs.all_changed_files }}
-#           separator: ','
-#           workspaceId: ${{ secrets.WORKSPACEID }}
-#           workspaceKey: ${{ secrets.WORKSPACEKEY }}
-
-name: Custom Logs
+name: CustomLogs
 on:
   push:
     paths:
       - samples/**
 
 jobs:
-  pester-test:
-    name: Code Validation
+  custom-logs:
+    name: custom logs insgestor
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-        with:      
-          fetch-depth: 2  # OR "2" -> To retrieve the preceding commit.
+        with:
+            ref: ${{github.event.pull_request.head.ref}}
+            repository: ${{github.event.pull_request.head.repo.full_name}}
 
-      - name: Get Changed Files
+      - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v23.1
         with:
           separator: ","
+      
+      - name: Microsoft Sentinel Custom Logs
+        uses: SecureHats/custom-logs@v0.2.2
+        with:
+          filesPath: '${{ steps.changed-files.outputs.all_changed_files }}'
+          separator: ','
+          workspaceId: ${{ secrets.WORKSPACEID }}
+          workspaceKey: ${{ secrets.WORKSPACEKEY }}
+
+# name: Custom Logs
+# on:
+#   push:
+#     paths:
+#       - samples/**
+
+# jobs:
+#   pester-test:
+#     name: Code Validation
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out repository code
+#         uses: actions/checkout@v3
+#         with:      
+#           fetch-depth: 2  # OR "2" -> To retrieve the preceding commit.
+
+#       - name: Get Changed Files
+#         id: changed-files
+#         uses: tj-actions/changed-files@v23.1
+#         with:
+#           separator: ","
               
-      - name: Testing Microsoft Sentinel Custom Data
-        shell: pwsh
-        run: |
-            ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath '${{ steps.changed-files.outputs.all_changed_files }}' -separator ','
+#       - name: Testing Microsoft Sentinel Custom Data
+#         shell: pwsh
+#         run: |
+#             ./action.ps1 -workspaceId ${{ secrets.WORKSPACEID }} -workspaceKey ${{ secrets.WORKSPACEKEY }} -filesPath '${{ steps.changed-files.outputs.all_changed_files }}' -separator ','
