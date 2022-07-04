@@ -15,5 +15,5 @@ jobs:
         uses: SecureHats/custom-logs@v1.0
         with:
           filesPath: samples
-          workspaceId: ${{ secrets.WORKSPACEID_RB }}
-          workspaceKey: ${{ secrets.WORKSPACEKEY_RB }}
+          workspaceId: ${{ secrets.WORKSPACEID }}
+          workspaceKey: ${{ secrets.WORKSPACEKEY }}
