@@ -1,0 +1,19 @@
+name: CustomLogs
+on:
+  push:
+    paths:
+      - samples/**
+
+jobs:
+  custom-logs:
+    name: Custom Logs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Microsoft Sentinel Custom Logs
+        uses: SecureHats/custom-logs@v1.0
+        with:
+          filesPath: samples
+          workspaceId: ${{ secrets.WORKSPACEID_RB }}
+          workspaceKey: ${{ secrets.WORKSPACEKEY_RB }}
