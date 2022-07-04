@@ -6,6 +6,8 @@
 This GitHub action can be used to send custom log data to Microsoft Sentinel in both JSON and CSV format.<br />
 By default all files in the monitored folder will be send to the Log Analytics workspace.
 
+> The filenames need to end with `_CL.json` or `_CL.csv` as this will help the action to create the right table names!
+
 ### Example 1
 
 > Add the following code block to your Github workflow:
