@@ -20,6 +20,10 @@ inputs:
     description:  'Workspace Key for the Log Analytics workspace.'
     required: true
     default: '.'
+  tableName:
+    description: 'Name of the custom table to save the sample data. If the sample filename ends with _CL a table with the same name will be created!'
+    required: false
+    default: null
 
 runs:
   using: "composite"
@@ -28,5 +32,6 @@ runs:
               -workspaceId  '${{ inputs.WORKSPACEID }}' `
               -workspaceKey '${{ inputs.WORKSPACEKEY }}' `
               -filesPath    '${{ inputs.filesPath }}' `
-              -separator    '${{ inputs.separator }}'
+              -separator    '${{ inputs.separator }}' `
+              -tableName    '${{ inputs.tableName}}'
       shell: pwsh
