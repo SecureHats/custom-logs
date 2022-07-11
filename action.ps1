@@ -49,7 +49,7 @@ if ($null -ne "$Separator") {
 $files = Get-ChildItem -Path @($FilesPath) | ForEach-Object {
     if ($_.FullName -like "*.csv") {
         try {
-            $parameters.dataInput = (Get-Content $_.FullName | ConvertFrom-CSV)
+            $parameters.dataInput = Import-CSV $_.FullName
             if ($_.BaseName -like "*_CL") {
                 $parameters.tableName = ($_.BaseName).Replace('_CL', '')
             }
