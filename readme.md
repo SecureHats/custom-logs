@@ -61,8 +61,8 @@ This Action defines the following format inputs.
 | Name | Req | Description
 |-|-|-|
 | **`filesPath`**  | false | Path to the directory containing the log files to be send, relative to the root of the project.<br /> This path is optional and defaults to the project root, in which case all files CSV files and JSON wills across the entire project tree will be discovered.
-| **`workspaceId`** | true | The workspace-id of the Log Analytics workspace.<br /> This value needs to be provided as a GitHub secret. see [documentation](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md) on how to create secrets in GitHub
-| **`workspaceKey`** | true | The primary or secondary key of the Log Analytics workspace.<br /> This value needs to be provided as a GitHub secret. see [documentation](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md) on how to create secrets in GitHub
+| **`workspaceId`** | true | The workspace-id of the Log Analytics workspace.<br /> This value needs to be provided as a GitHub secret. see [documentation](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md) on how to create secrets in GitHub.
+| **`workspaceKey`** | true | The primary or secondary key of the Log Analytics workspace.<br /> This value needs to be provided as a GitHub secret. see [documentation](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md) on how to create secrets in GitHub.
 | **`separator`** | false | Split character for when providing an array of values. when left empty a comma is used.
 | **`tablename`** | false | Name of the custom table where the sample log will be stored.<br />If the sample file ends with \_CL a table with the name of the sample file will be created.
 
